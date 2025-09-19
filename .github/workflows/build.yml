@@ -126,8 +126,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            saltydk/nabarr:${{ steps.releasetag.outputs.tag }}
-            saltydk/nabarr:latest
+            milizeus/nabarr:${{ steps.releasetag.outputs.tag }}
+            milizeus/nabarr:latest
 
       # docker build (branch)
       - name: branch name
@@ -157,7 +157,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            saltydk/nabarr:${{ steps.dockertag.outputs.replaced }}
+            milizeus/nabarr:${{ steps.dockertag.outputs.replaced }}
 
       # cleanup
       - name: cleanup
