@@ -48,11 +48,13 @@ func (j *rssJob) queueItemWithPvrs(item *media.FeedItem) bool {
 	queued := false
 	for _, pvr := range j.pvrs {
 		switch {
-		case (item.TvdbId != "" || item.TmdbId != "" || item.ImdbId != "") && util.ContainsTvCategory(item.Categories) && pvr.Type() == "sonarr":
+//		case (item.TvdbId != "" || item.TmdbId != "" || item.ImdbId != "") && util.ContainsTvCategory(item.Categories) && pvr.Type() == "sonarr":
+		case util.ContainsTvCategory(item.Categories) && pvr.Type() == "sonarr":
 			// tvdbId/tmdbId is present, queue with sonarr
 			pvr.QueueFeedItem(item)
 			queued = true
-		case (item.ImdbId != "" || item.TmdbId != "") && util.ContainsMovieCategory(item.Categories) && pvr.Type() == "radarr":
+//		case (item.ImdbId != "" || item.TmdbId != "") && util.ContainsMovieCategory(item.Categories) && pvr.Type() == "radarr":
+		case util.ContainsMovieCategory(item.Categories) && pvr.Type() == "radarr":
 			// imdbId is present, queue with radarr
 			pvr.QueueFeedItem(item)
 			queued = true
